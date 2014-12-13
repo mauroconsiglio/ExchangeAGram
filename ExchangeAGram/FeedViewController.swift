@@ -21,10 +21,14 @@ class FeedViewController: UIViewController, UICollectionViewDataSource, UICollec
 
         // Do any additional setup after loading the view.
         
+    }
+    
+    override func viewDidAppear(animated: Bool) {
         let request = NSFetchRequest(entityName: "FeedItem")
         let appDelegate:AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
         let context:NSManagedObjectContext = appDelegate.managedObjectContext!
         feedArray = context.executeFetchRequest(request, error: nil)!
+        collectionView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -83,6 +87,7 @@ class FeedViewController: UIViewController, UICollectionViewDataSource, UICollec
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         let image = info[UIImagePickerControllerOriginalImage] as UIImage
         let imageData = UIImageJPEGRepresentation(image, 1.0)
+        let thumbnailData = UIImageJPEGRepresentation(image, 0.1)
         
         let managedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext
         let entityDescription = NSEntityDescription.entityForName("FeedItem", inManagedObjectContext: managedObjectContext!)
@@ -90,6 +95,7 @@ class FeedViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         feedItem.image = imageData
         feedItem.caption = "test caption"
+        feedItem.thumbNail = thumbnailData
         
         (UIApplication.sharedApplication().delegate as AppDelegate).saveContext()
         
@@ -121,6 +127,17 @@ class FeedViewController: UIViewController, UICollectionViewDataSource, UICollec
         cell.captionLabel.text = thisItem.caption
         
         return cell
+    }
+    
+    // UICollectionViewDelegate
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let thisItem = feedArray[indexPath.row] as FeedItem
+        
+        var filterVC = FilterViewController()
+        filterVC.thisFeedItem = thisItem
+        
+        self.navigationController?.pushViewController(filterVC, animated: false)
     }
 
 }
