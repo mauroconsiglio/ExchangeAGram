@@ -49,6 +49,9 @@ class FeedViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     // IBActions
     
+    @IBAction func profileTapped(sender: UIBarButtonItem) {
+        self.performSegueWithIdentifier("profileSegue", sender: nil)
+    }
     
     @IBAction func snapBarButtonItemTapped(sender: UIBarButtonItem) {
         
