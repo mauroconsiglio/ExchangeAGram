@@ -10,11 +10,17 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="SplashScreen" translatesAutoresizingMaskIntoConstraints="NO" id="xev-P8-lfc">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashScreen" translatesAutoresizingMaskIntoConstraints="NO" id="xev-P8-lfc">
                     <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="xev-P8-lfc" secondAttribute="bottom" id="AHS-7F-llW"/>
+                <constraint firstItem="xev-P8-lfc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="dNB-eO-Rzw"/>
+                <constraint firstItem="xev-P8-lfc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="fQR-qA-9qB"/>
+                <constraint firstAttribute="trailing" secondItem="xev-P8-lfc" secondAttribute="trailing" id="nqy-7p-06V"/>
+            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="548" y="455"/>
